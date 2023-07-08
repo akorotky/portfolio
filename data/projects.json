@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Issue Tracker API",
+    "summary": "",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "REST API",
+      "Redis",
+      "Spring MVC",
+      "Json Web Token",
+      "Spring Data JPA",
+      "Spring Security",
+      "Hibernate",
+      "OpenAPI/Swagger UI"
+    ],
+    "link": "https://github.com/akorotky/issue-tracker-api"
+  },
+  {
+    "name": "File Storage API",
+    "summary": "",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "MongoDB",
+      "REST API",
+      "Spring Data MongoDB",
+      "GridFS",
+      "Docker"
+    ],
+    "link": "https://github.com/akorotky/file-storage-api"
+  },
+  {
+    "name": "Sorting Visualizer",
+    "summary": "",
+    "skills": [
+      "React.js",
+      "Javascript",
+      "Typescript",
+      "Redux",
+      "Algorithms & Data Structures"
+    ],
+    "link": "https://github.com/akorotky/sorting-visualizer"
+  },
+  {
+    "name": "Snake Game",
+    "summary": "",
+    "skills": ["React.js", "Javascript", "Typescript", "Redux"],
+    "link": "https://github.com/akorotky/react-snake"
+  },
+  {
+    "name": "Portfolio",
+    "summary": "",
+    "skills": ["React.js", "Typescript"],
+    "link": "https://github.com/akorotky/portfolio"
+  }
+]

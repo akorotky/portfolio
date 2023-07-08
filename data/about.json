@@ -1,0 +1,32 @@
+{
+  "headline": "Hey there, I'm Alex!",
+  "summary": [
+    "I am a senior college student, pursuing a B.S. in Computer Science.",
+    "My enthusiasm lies in tackling complex problems and providing efficient, scalable solutions.",
+    "My specific interests revolve around backend and full-stack development, where I've honed my skills in multiple programming languages, databases, and frameworks.",
+    "I also have a keen interest in microservices architecture, where I am intrigued by its power to create robust, scalable, and maintainable applications."
+  ],
+  "interests": "",
+  "skills": {
+    "programmingLanguages": [
+      "Java",
+      "Python",
+      "Javascript",
+      "Typescript",
+      "SQL",
+      "HTML/CSS",
+      "PHP"
+    ],
+    "frontendDevelopment": ["React.js", "React Native"],
+    "backendDevelopment": [
+      "Spring Framework",
+      "Spring Boot",
+      "Node.js",
+      "Django",
+      "Laravel"
+    ],
+    "databases": ["PostgreSQL", "Oracle", "MongoDB", "Redis"],
+    "cicd": ["Git", "Maven", "Gradle", "Docker", "Jira"],
+    "developerTools": ["Postman", "VsCode", "IntelliJ"]
+  }
+}

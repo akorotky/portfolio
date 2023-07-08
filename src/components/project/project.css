@@ -1,0 +1,11 @@
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 15em;
+  grid-row-gap: 5em;
+}
+
+.project-grid-cell {
+  display: flex;
+  flex-direction: column;
+}

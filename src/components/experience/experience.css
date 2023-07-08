@@ -1,0 +1,11 @@
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 15em;
+  grid-row-gap: 5em;
+}
+
+.experience-grid-cell {
+  display: flex;
+  flex-direction: column;
+}
