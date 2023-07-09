@@ -4,8 +4,6 @@ import asteroidImage from "../../assets/asteroid.jpg";
 import avatarImage from "../../assets/lion-avatar.png";
 import sunImage from "../../assets/sun.jpg";
 
-const speed = 0.005;
-
 type TAvatar = {
   mesh: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial>;
 };
@@ -42,7 +40,6 @@ const createSun = (): TSun => {
 
 type TAsteroid = {
   mesh: THREE.Mesh<THREE.DodecahedronGeometry, THREE.MeshStandardMaterial>;
-  velocity: THREE.Vector3;
   orbitRadius: number;
   orbitalVelocity: number;
 };
@@ -54,34 +51,61 @@ const createAsteroid = (): TAsteroid => {
     new THREE.MeshStandardMaterial({ map: asteroidTexture })
   );
 
-  const [x, y, z] = Array(3)
-    .fill(0)
-    .map((_) => THREE.MathUtils.randFloatSpread(15));
+  const [x, y, z] = [15, 2, 15].map((n) => THREE.MathUtils.randFloatSpread(n));
 
-  mesh.position.set(x, THREE.MathUtils.randFloatSpread(2), z);
+  mesh.position.set(x, y, z);
 
-  const velocity = new THREE.Vector3(speed, speed, 0);
   const orbitRadius = Math.random() * 5 + 5;
   const orbitalVelocity = Math.random() / 5000;
 
-  return { mesh, velocity, orbitRadius, orbitalVelocity };
+  return { mesh, orbitRadius, orbitalVelocity };
+};
+
+type TAsteroidState = {
+  matrix: THREE.Matrix4;
+  orbitRadius: number;
+  orbitalVelocity: number;
+};
+
+const asteroidStateMap = new Map();
+
+const createAsteroids = (asteroidCount: number) => {
+  const asteroid = createAsteroid();
+  const instancedAsteroid = new THREE.InstancedMesh(
+    asteroid.mesh.geometry,
+    asteroid.mesh.material,
+    asteroidCount
+  );
+
+  for (let i = 0; i < asteroidCount; i++) {
+    const [x, y, z] = [15, 2, 15].map((n) =>
+      THREE.MathUtils.randFloatSpread(n)
+    );
+
+    const matrix = new THREE.Matrix4();
+    matrix.setPosition(x, y, z);
+    instancedAsteroid.setMatrixAt(i, matrix);
+
+    // save state for each asteroid
+    asteroidStateMap.set(i, {
+      matrix: matrix,
+      orbitRadius: Math.random() * 5 + 5,
+      orbitalVelocity: Math.random() / 5000,
+    } as TAsteroidState);
+  }
+  return instancedAsteroid;
 };
 
 const initMeshes = (scene: THREE.Scene) => {
   const avatar = createAvatar();
   const sun = createSun();
+  const instancedAsteroid = createAsteroids(500);
+
   scene.add(avatar.mesh);
   scene.add(sun.mesh);
+  scene.add(instancedAsteroid);
 
-  const asteroids = Array(500)
-    .fill(0)
-    .map((_) => {
-      const asteroid = createAsteroid();
-      scene.add(asteroid.mesh);
-      return asteroid;
-    });
-
-  return { avatar, sun, asteroids };
+  return { avatar, sun, instancedAsteroid };
 };
 
 export const createAnimation = (canvas: HTMLCanvasElement): TAnimation => {
@@ -105,7 +129,7 @@ export const createAnimation = (canvas: HTMLCanvasElement): TAnimation => {
   scene.background = spaceTexture;
 
   // init meshes
-  const { avatar, sun, asteroids } = initMeshes(scene);
+  const { avatar, sun, instancedAsteroid } = initMeshes(scene);
 
   const pointLight = new THREE.PointLight(0xffffff, 1, 1000);
   pointLight.position.set(
@@ -157,7 +181,7 @@ export const createAnimation = (canvas: HTMLCanvasElement): TAnimation => {
     camera.lookAt(new THREE.Vector3(0, 0, 0));
   };
 
-  return { scene, camera, renderer, avatar, sun, asteroids };
+  return { scene, camera, renderer, avatar, sun, instancedAsteroid };
 };
 
 type TAnimation = {
@@ -166,32 +190,47 @@ type TAnimation = {
   renderer: THREE.WebGLRenderer;
   avatar: TAvatar;
   sun: TSun;
-  asteroids: TAsteroid[];
+  instancedAsteroid: THREE.InstancedMesh<
+    THREE.DodecahedronGeometry,
+    THREE.MeshStandardMaterial
+  >;
+};
+
+const updateInstancedAsteroidAnimationState = (
+  instancedAsteroid: THREE.InstancedMesh<
+    THREE.DodecahedronGeometry,
+    THREE.MeshStandardMaterial
+  >
+) => {
+  for (let i = 0; i < instancedAsteroid.count; i++) {
+    const { matrix, orbitRadius, orbitalVelocity } = asteroidStateMap.get(
+      i
+    ) as TAsteroidState;
+    const dummy = new THREE.Object3D();
+    dummy.applyMatrix4(matrix);
+
+    dummy.rotation.x += 0.005;
+    dummy.rotation.y += 0.005;
+    dummy.rotation.z += 0.005;
+
+    dummy.position.x = orbitRadius * Math.sin(Date.now() * orbitalVelocity);
+    dummy.position.z = orbitRadius * Math.cos(Date.now() * orbitalVelocity);
+
+    dummy.updateMatrix();
+
+    instancedAsteroid.setMatrixAt(i, dummy.matrix);
+    asteroidStateMap.set(i, {
+      ...asteroidStateMap.get(i),
+      matrix: dummy.matrix,
+    });
+  }
+  instancedAsteroid.instanceMatrix.needsUpdate = true;
 };
 
 export function animate(animation: TAnimation) {
-  const { scene, camera, renderer, avatar, sun, asteroids } = animation;
-  const aspectRatio = window.innerWidth / window.innerHeight;
+  const { scene, camera, renderer, avatar, sun, instancedAsteroid } = animation;
 
-  asteroids.forEach((a) => {
-    const cameraHeight =
-      2 *
-      Math.tan(((camera.fov / 2) * Math.PI) / 180) *
-      Math.abs(camera.position.z - a.mesh.position.z);
-    const cameraWidth = cameraHeight * aspectRatio;
-
-    a.mesh.rotation.x += 0.005;
-    a.mesh.rotation.y += 0.005;
-    a.mesh.rotation.z += 0.005;
-
-    if (Math.abs(a.mesh.position.x) > cameraWidth / 2) a.velocity.x *= -1;
-    if (Math.abs(a.mesh.position.y) > cameraHeight / 2) a.velocity.y *= -1;
-
-    a.mesh.position.x =
-      a.orbitRadius * Math.sin(Date.now() * a.orbitalVelocity);
-    a.mesh.position.z =
-      a.orbitRadius * Math.cos(Date.now() * a.orbitalVelocity);
-  });
+  updateInstancedAsteroidAnimationState(instancedAsteroid);
 
   avatar.mesh.rotation.x += 0.01;
   avatar.mesh.rotation.y += 0.01;
@@ -202,23 +241,27 @@ export function animate(animation: TAnimation) {
 
   renderer.render(scene, camera);
   requestAnimationFrame(() =>
-    animate({ scene, camera, renderer, avatar, sun, asteroids })
+    animate({ scene, camera, renderer, avatar, sun, instancedAsteroid })
   );
 }
 
 type TAnimationStateToClean = {
   renderer: THREE.WebGLRenderer;
-  avatar?: TAvatar;
-  sun?: TSun;
-  asteroids?: TAsteroid[];
+  avatar: TAvatar;
+  sun: TSun;
+  instancedAsteroid: THREE.InstancedMesh<
+    THREE.DodecahedronGeometry,
+    THREE.MeshStandardMaterial
+  >;
 };
 
 export function cleanup(animationStateToClean: TAnimationStateToClean) {
-  const { renderer, avatar, sun, asteroids } = animationStateToClean;
+  const { renderer, avatar, sun, instancedAsteroid } = animationStateToClean;
   renderer.dispose();
-
-  [avatar, sun, asteroids].flat().forEach((o) => {
-    o?.mesh.geometry.dispose();
-    o?.mesh.material.dispose();
+  [avatar, sun].forEach((o) => {
+    o.mesh.geometry.dispose();
+    o.mesh.material.dispose();
   });
+  instancedAsteroid.geometry.dispose();
+  instancedAsteroid.material.dispose();
 }
