@@ -13,8 +13,8 @@ export const ExperienceSection = ({
     <div>
       <h2>Experience</h2>
       <div className="experience-grid">
-        {experiencesData.map((experienceData) => (
-          <Experience {...experienceData} />
+        {experiencesData.map((experienceData, idx) => (
+          <Experience key={idx} {...experienceData} />
         ))}
       </div>
     </div>

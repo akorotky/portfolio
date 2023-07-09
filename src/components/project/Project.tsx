@@ -9,10 +9,10 @@ export const Project = (projectData: TProject) => {
       <p>{projectData.summary}</p>
       <div>
         {projectData.skills.map((skill, idx) => (
-          <>
+          <div key={idx}>
             <span>{skill}</span>
             {idx !== projectData.skills.length - 1 && <span> • </span>}
-          </>
+          </div>
         ))}
       </div>
     </div>

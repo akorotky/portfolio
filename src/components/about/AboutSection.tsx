@@ -25,16 +25,16 @@ export const AboutSection = (aboutData: TAbout) => {
       <p>{aboutData.summary}</p>
       <p>{aboutData.interests}</p>
       <div>
-        {Object.keys(skills).map((category) => {
+        {Object.keys(skills).map((category, categoryIdx) => {
           const currentSkillSet = skills[category as keyof typeof skills];
           return (
-            <div>
+            <div key={categoryIdx}>
               <strong>{category}: </strong>
-              {currentSkillSet?.map((skill, idx) => (
-                <>
+              {currentSkillSet?.map((skill, skillIdx) => (
+                <div key={skillIdx}>
                   <span>{skill}</span>
-                  {idx !== currentSkillSet?.length - 1 && <span> • </span>}
-                </>
+                  {skillIdx !== currentSkillSet?.length - 1 && <span> • </span>}
+                </div>
               ))}
             </div>
           );

@@ -1,5 +1,5 @@
 import { TExperience } from "../../types/experience";
-import "./experience.css"
+import "./experience.css";
 
 export const Experience = (experienceData: TExperience) => {
   return (
@@ -8,8 +8,8 @@ export const Experience = (experienceData: TExperience) => {
       <p>{experienceData.date}</p>
       <p>{experienceData.location}</p>
       <p>{experienceData.summary}</p>
-      {experienceData.skills.map((skill) => (
-        <div>{skill}</div>
+      {experienceData.skills.map((skill, idx) => (
+        <div key={idx}>{skill}</div>
       ))}
     </div>
   );

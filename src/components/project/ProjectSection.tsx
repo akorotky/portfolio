@@ -11,8 +11,8 @@ export const ProjectSection = ({ projectsData }: ProjectSectionProps) => {
     <div>
       <h2>Projects</h2>
       <div className="project-grid">
-        {projectsData.map((projectData) => (
-          <Project {...projectData} />
+        {projectsData.map((projectData, idx) => (
+          <Project key={idx} {...projectData} />
         ))}
       </div>
     </div>
