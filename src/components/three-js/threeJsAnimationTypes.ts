@@ -1,3 +1,5 @@
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
 type TAvatar = {
   mesh: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial>;
 };
@@ -28,6 +30,7 @@ type TAnimation = {
     THREE.DodecahedronGeometry,
     THREE.MeshStandardMaterial
   >;
+  controls: OrbitControls;
 };
 type TAnimationStateToClean = {
   renderer: THREE.WebGLRenderer;

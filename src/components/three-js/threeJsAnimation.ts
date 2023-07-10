@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
 import space from "../../assets/space.jpg";
 import { TAnimation, TAnimationStateToClean } from "./threeJsAnimationTypes";
 import {
@@ -26,6 +28,11 @@ export const createAnimation = (canvas: HTMLCanvasElement): TAnimation => {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
 
+  // add orbit controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.maxDistance = 20;
+  controls.minDistance = 5;
+
   // set background
   const spaceTexture = new THREE.TextureLoader().load(space);
   scene.background = spaceTexture;
@@ -46,11 +53,12 @@ export const createAnimation = (canvas: HTMLCanvasElement): TAnimation => {
   window.onresize = () => keepAnimationWindowSizeConstant(camera, renderer);
   window.onscroll = () => changeCameraPerspactiveOnScroll(camera);
 
-  return { scene, camera, renderer, avatar, sun, instancedAsteroid };
+  return { scene, camera, renderer, avatar, sun, instancedAsteroid, controls };
 };
 
 export function animate(animation: TAnimation) {
-  const { scene, camera, renderer, avatar, sun, instancedAsteroid } = animation;
+  const { scene, camera, renderer, avatar, sun, instancedAsteroid, controls } =
+    animation;
 
   // update asteroids
   updateInstancedAsteroidAnimationState(instancedAsteroid);
@@ -64,12 +72,23 @@ export function animate(animation: TAnimation) {
   sun.mesh.rotation.x += 0.001;
   sun.mesh.rotation.y += 0.001;
 
+  // update orbit controls
+  controls.update();
+
   // render changes
   renderer.render(scene, camera);
 
   //  request animation frame
   requestAnimationFrame(() =>
-    animate({ scene, camera, renderer, avatar, sun, instancedAsteroid })
+    animate({
+      scene,
+      camera,
+      renderer,
+      avatar,
+      sun,
+      instancedAsteroid,
+      controls,
+    })
   );
 }
 

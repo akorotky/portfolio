@@ -7,26 +7,28 @@ import aboutData from "../../../data/about.json";
 import experiencesData from "../../../data/experience.json";
 import projectsData from "../../../data/projects.json";
 import skillsData from "../../../data/skills.json";
+import { useState } from "react";
 import "./portfolio.css";
 
 export const Portfolio = () => {
+  const [showPortfolio, setShowPortfolio] = useState(true);
   return (
     <div>
       <ThreeJsCanvas />
-      <div style={{ position: "absolute", textAlign: "center" }}>
-        <div
-          className="portfolio-grid"
-          // style={{
-          //   display: "flex",
-          //   flexDirection: "column",
-
-          // }}
-        >
-          <AboutSection {...aboutData} />
-          <SkillsSection {...skillsData} />
-          <ExperienceSection experiencesData={experiencesData} />
-          <ProjectSection projectsData={projectsData} />
+      {showPortfolio && (
+        <div style={{ position: "absolute", textAlign: "center" }}>
+          <div className="portfolio-grid">
+            <AboutSection {...aboutData} />
+            <SkillsSection {...skillsData} />
+            <ExperienceSection experiencesData={experiencesData} />
+            <ProjectSection projectsData={projectsData} />
+          </div>
         </div>
+      )}
+      <div style={{ position: "fixed", top: 0, right: 0 }}>
+        <button onClick={() => setShowPortfolio(!showPortfolio)}>
+          Toggle Playground
+        </button>
       </div>
     </div>
   );
