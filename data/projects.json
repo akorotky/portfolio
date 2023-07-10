@@ -1,7 +1,30 @@
 [
   {
+    "name": "Forum Microservice",
+    "summary": [
+      "Created a microservice for a web forum application using reactive programming",
+      "Implemented 4 RESTful CRUD APIs"
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "REST API",
+      "R2DBC",
+      "Spring Webflux",
+      "GraalVM",
+      "Docker"
+    ],
+    "link": "https://github.com/akorotky/wf-forum"
+  },
+  {
     "name": "Issue Tracker API",
-    "summary": "",
+    "summary": [
+      "Built a full-stack web application for issue tracking and project collaboration",
+      "Implemented 4 RESTful RFC-compliant APIs",
+      "Implemented token-based (JWT) and Basic authentication and authorization",
+      "Implemented performant fine-grained resource access control"
+    ],
     "skills": [
       "Java",
       "Spring Boot",
@@ -19,7 +42,11 @@
   },
   {
     "name": "File Storage API",
-    "summary": "",
+    "summary": [
+      "Created a RESTful API that enables to upload, download, and delete small and large (up to several GB) files",
+      "Implemented support for flexible searching, retrieving and updating of file metadata",
+      "Added support for many different file types, such as PDF, TXT, JSON, XML, DOCX, XLSX"
+    ],
     "skills": [
       "Java",
       "Spring Boot",
@@ -33,7 +60,10 @@
   },
   {
     "name": "Sorting Visualizer",
-    "summary": "",
+    "summary": [
+      "Created a web application tool for visualizing array sorting algorithms",
+      "Implemented a dozen popular and useful sorting algorithms, such as Quicksort, Mergesort, Intrasort, etc."
+    ],
     "skills": [
       "React.js",
       "Javascript",
@@ -45,13 +75,15 @@
   },
   {
     "name": "Snake Game",
-    "summary": "",
+    "summary": ["Implemented a Game of Snake using React"],
     "skills": ["React.js", "Javascript", "Typescript", "Redux"],
     "link": "https://github.com/akorotky/react-snake"
   },
   {
     "name": "Portfolio",
-    "summary": "",
+    "summary": [
+      "Created a personal portfolio which includes a realistic simulation of the solar system"
+    ],
     "skills": ["React.js", "Typescript", "Three.js"],
     "link": "https://github.com/akorotky/portfolio"
   }

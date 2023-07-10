@@ -1,6 +1,6 @@
 type TProject = {
   name: string;
-  summary: string;
+  summary: string[];
   skills: string[];
   link: string;
 };

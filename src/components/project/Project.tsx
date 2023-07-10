@@ -6,7 +6,13 @@ export const Project = (projectData: TProject) => {
     <div className="project-grid-cell">
       <h3 style={{ color: "#FFD100" }}>{projectData.name}</h3>
       <a href={projectData.link}>Project Link</a>
-      <p>{projectData.summary}</p>
+      <ul style={{ textAlign: "start" }}>
+        {projectData.summary.map((line, idx) => (
+          <li style={{ margin: "0.5em" }} key={idx}>
+            {line}
+          </li>
+        ))}
+      </ul>
       <div
         style={{
           display: "flex",
