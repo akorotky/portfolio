@@ -1,6 +1,8 @@
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin: 8em;
+  margin-top: 3em;
   grid-column-gap: 15em;
   grid-row-gap: 5em;
 }
@@ -8,4 +10,7 @@
 .project-grid-cell {
   display: flex;
   flex-direction: column;
+  background-color: rgb(0, 0, 0);
+  border-radius: 1em;
+  padding: 2em;
 }

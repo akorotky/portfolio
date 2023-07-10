@@ -1,0 +1,26 @@
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 140, 233);
+  width: 40%;
+  padding: 3em;
+  border-radius: 1em;
+  animation: slide 2s ease-in 1s forwards;
+  transform: translateY(-100vh);
+}
+
+@keyframes slide {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

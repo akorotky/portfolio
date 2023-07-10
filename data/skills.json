@@ -1,0 +1,22 @@
+{
+  "programmingLanguages": [
+    "Java",
+    "Python",
+    "Javascript",
+    "Typescript",
+    "SQL",
+    "HTML/CSS",
+    "PHP"
+  ],
+  "frontendDevelopment": ["React.js", "React Native"],
+  "backendDevelopment": [
+    "Spring Framework",
+    "Spring Boot",
+    "Node.js",
+    "Django",
+    "Laravel"
+  ],
+  "databases": ["PostgreSQL", "Oracle", "MongoDB", "Redis"],
+  "cicd": ["Git", "Maven", "Gradle", "Docker", "Jira"],
+  "developerTools": ["Postman", "VsCode", "IntelliJ"]
+}
