@@ -2,22 +2,37 @@ import * as THREE from "three";
 import asteroidImage from "../../assets/asteroid.jpg";
 import avatarImage from "../../assets/lion-avatar.png";
 import sunImage from "../../assets/sun.jpg";
-import { TSun, TAsteroid, TAsteroidState } from "./threeJsAnimationTypes";
+import earthImage from "../../assets/earth.jpg";
+import jupiterImage from "../../assets/jupiter.jpg";
+import neptuneImage from "../../assets/neptune.jpg";
+import uranusImage from "../../assets/uranus.jpg";
+import marsImage from "../../assets/mars.jpg";
+import venusImage from "../..//assets/venus.jpg";
+import mercuryImage from "../..//assets/mercury.jpg";
+import saturnImage from "../../assets/saturn.jpg";
+import moonImage from "../../assets/moon.jpg";
+
+import {
+  TSun,
+  TAsteroid,
+  TAsteroidState,
+  TPlanet,
+} from "./threeJsAnimationTypes";
 
 export const createAvatar = () => {
   const avatarTexture = new THREE.TextureLoader().load(avatarImage);
   const avatar = new THREE.Mesh(
-    new THREE.BoxGeometry(2, 2, 2),
+    new THREE.BoxGeometry(0.1, 0.1, 0.1),
     new THREE.MeshBasicMaterial({ map: avatarTexture })
   );
-  avatar.position.set(-5, 5, 1);
+  avatar.position.set(-0.4, 0.18, 12.6);
   return { mesh: avatar };
 };
 
 export const createSun = (): TSun => {
   const sunTexture = new THREE.TextureLoader().load(sunImage);
   const sun = new THREE.Mesh(
-    new THREE.SphereGeometry(4, 64, 32),
+    new THREE.SphereGeometry(5, 64, 32),
     new THREE.MeshStandardMaterial({
       map: sunTexture,
       emissive: 0xffc500,
@@ -28,6 +43,17 @@ export const createSun = (): TSun => {
     })
   );
   return { mesh: sun };
+};
+
+export const createPlanet = (radius: number, image: string): TPlanet => {
+  const planetTexture = new THREE.TextureLoader().load(image);
+  const planetMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(radius, 64, 32),
+    new THREE.MeshStandardMaterial({
+      map: planetTexture,
+    })
+  );
+  return { mesh: planetMesh };
 };
 
 export const createAsteroid = (): TAsteroid => {
@@ -59,18 +85,15 @@ export const createAsteroids = (asteroidCount: number) => {
 
   for (let i = 0; i < asteroidCount; i++) {
     // generate random position coordinates
-    const [x, y, z] = [15, 2, 15].map((n) =>
-      THREE.MathUtils.randFloatSpread(n)
-    );
-
+    const pos = (n: number) => THREE.MathUtils.randFloatSpread(n);
     const matrix = new THREE.Matrix4();
-    matrix.setPosition(x, y, z);
+    matrix.setPosition(20, pos(1.7), 20);
     instancedAsteroid.setMatrixAt(i, matrix);
 
     // save state for each asteroid
     asteroidStateMap.set(i, {
       matrix: matrix,
-      orbitRadius: Math.random() * 5 + 5,
+      orbitRadius: Math.random() * 5 + 15,
       orbitalVelocity: Math.random() / 5000,
     } as TAsteroidState);
   }
@@ -81,13 +104,45 @@ export const initMeshes = (scene: THREE.Scene) => {
   const avatar = createAvatar();
   const sun = createSun();
   const instancedAsteroid = createAsteroids(500);
+  const earth = createPlanet(0.5, earthImage);
+  const moon = createPlanet(0.15, moonImage);
+  const mercury = createPlanet(0.21, mercuryImage);
+  const venus = createPlanet(0.48, venusImage);
+  const mars = createPlanet(0.26, marsImage);
+  const jupiter = createPlanet(1.7, jupiterImage);
+  const saturn = createPlanet(1.4, saturnImage);
+  const uranus = createPlanet(0.8, uranusImage);
+  const neptune = createPlanet(0.7, neptuneImage);
+
+  // define names for objects to be able to retrieve them from the scene
+  mercury.mesh.name = "Mercury";
+  venus.mesh.name = "Venus";
+  earth.mesh.name = "Earth";
+  moon.mesh.name = "Moon";
+  mars.mesh.name = "Mars";
+  jupiter.mesh.name = "Jupiter";
+  saturn.mesh.name = "Saturn";
+  uranus.mesh.name = "Uranus";
+  neptune.mesh.name = "Neptune";
+
+  sun.mesh.name = "Sun";
+  avatar.mesh.name = "Avatar";
+  instancedAsteroid.name = "Asteroids";
 
   // add meshes to the scene
-  scene.add(avatar.mesh);
   scene.add(sun.mesh);
-  scene.add(instancedAsteroid);
+  scene.add(mercury.mesh);
+  scene.add(venus.mesh);
+  scene.add(earth.mesh);
+  scene.add(moon.mesh);
+  scene.add(mars.mesh);
+  scene.add(jupiter.mesh);
+  scene.add(saturn.mesh);
+  scene.add(neptune.mesh);
+  scene.add(uranus.mesh);
 
-  return { avatar, sun, instancedAsteroid };
+  scene.add(avatar.mesh);
+  scene.add(instancedAsteroid);
 };
 
 export const updateInstancedAsteroidAnimationState = (
@@ -158,13 +213,13 @@ export const changeCameraPerspactiveOnScroll = (
 
   const scrollTop = document.documentElement.scrollTop;
   const scrollPercentage = scrollTop / maxScrollTop;
-  const radius = 10; // distance from the sun
+  const radius = 13; // distance from the sun
 
   // update camera coordinates
   const newZ = radius * Math.cos((scrollPercentage * Math.PI) / 2);
-  const newY = (radius + 5) * Math.sin((scrollPercentage * Math.PI) / 2);
+  const newY = (radius + 25) * Math.sin((scrollPercentage * Math.PI) / 2);
   const newX = Math.sin((scrollPercentage * Math.PI) / 2);
-  
+
   camera.position.set(newX, newY, newZ);
 
   // make camera look always at the sun

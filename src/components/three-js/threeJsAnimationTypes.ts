@@ -8,6 +8,10 @@ type TSun = {
   mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>;
 };
 
+type TPlanet = {
+  mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>;
+};
+
 type TAsteroid = {
   mesh: THREE.Mesh<THREE.DodecahedronGeometry, THREE.MeshStandardMaterial>;
   orbitRadius: number;
@@ -24,22 +28,12 @@ type TAnimation = {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   renderer: THREE.WebGLRenderer;
-  avatar: TAvatar;
-  sun: TSun;
-  instancedAsteroid: THREE.InstancedMesh<
-    THREE.DodecahedronGeometry,
-    THREE.MeshStandardMaterial
-  >;
   controls: OrbitControls;
 };
 type TAnimationStateToClean = {
+  scene: THREE.Scene
   renderer: THREE.WebGLRenderer;
-  avatar: TAvatar;
-  sun: TSun;
-  instancedAsteroid: THREE.InstancedMesh<
-    THREE.DodecahedronGeometry,
-    THREE.MeshStandardMaterial
-  >;
+
 };
 
 export type {
@@ -49,4 +43,5 @@ export type {
   TAnimation,
   TAnimationStateToClean,
   TAsteroidState,
+  TPlanet
 };
