@@ -3,7 +3,7 @@ type TExperience = {
   company: string;
   date: string;
   location: string;
-  summary: string;
+  summary: string[];
   skills: string[];
 };
 

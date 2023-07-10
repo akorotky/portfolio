@@ -12,21 +12,20 @@ export const SkillsSection = (skillsData: TSkills) => {
   };
   return (
     <div>
-      <div >
+      <div>
         <h2
           style={{
             color: "rgb(0, 140, 233)",
-            backgroundColor: "black",
+            backgroundColor: "#000000da",
             width: "7%",
             margin: "0 auto 0.5em auto",
             borderRadius: "1em",
-            padding:"0.3em"
+            padding: "0.3em",
           }}
         >
           Skills
         </h2>
       </div>
-
       <div className="skills-container">
         {Object.keys(skills).map((category, categoryIdx) => {
           const currentSkillSet = skills[category as keyof typeof skills];
@@ -34,8 +33,8 @@ export const SkillsSection = (skillsData: TSkills) => {
             <div className="skills-content" key={categoryIdx}>
               <strong style={{ color: "#FFF000" }}>{category}</strong>
               <ul style={{ textAlign: "start" }}>
-                {currentSkillSet?.map((skill, skillIdx) => (
-                  <li key={skillIdx}>{skill}</li>
+                {currentSkillSet.map((skill, idx) => (
+                  <li key={idx}>{skill}</li>
                 ))}
               </ul>
             </div>

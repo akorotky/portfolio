@@ -52,7 +52,7 @@
   {
     "name": "Portfolio",
     "summary": "",
-    "skills": ["React.js", "Typescript"],
+    "skills": ["React.js", "Typescript", "Three.js"],
     "link": "https://github.com/akorotky/portfolio"
   }
 ]

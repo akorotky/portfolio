@@ -12,7 +12,7 @@ export const ProjectSection = ({ projectsData }: ProjectSectionProps) => {
       <h2
         style={{
           color: "rgb(0, 140, 233)",
-          backgroundColor: "black",
+          backgroundColor: "#000000da",
           width: "9%",
           margin: "0 auto 0.5em auto",
           borderRadius: "1em",

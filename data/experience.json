@@ -4,7 +4,14 @@
     "company": "Delta Dental",
     "date": "June 2023 - August 2023",
     "location": "San Francisco, CA",
-    "summary": "",
+    "summary": [
+      "Designed and built microservices with REST API from scratch using Java 17, Spring Boot, and Oracle DB",
+      "Refactored, optimized, and modernized a legacy Java 8/Spring monolithic application",
+      "Delivered 3,000 lines of high-quality Java code within the first month of the internship",
+      "Reviewed, identified bugs in, and suggested improvements for Java, Javascript, and Typescript codebases",
+      "Performed unit, integration, and end-to-end tests on microservices using JUnit, Mockito, and MockMVC",
+      "Used Jira to improve Software Development Life Cycle efficiency and team collaboration"
+    ],
     "skills": [
       "Java 17",
       "Spring Boot",
@@ -15,8 +22,9 @@
       "Spring Data JPA",
       "Spring Security",
       "Tomcat",
+      "Maven",
       "Hibernate",
-      "Unit, integration, end-to-end testing with JUnit, Mockito, and MockMVC",
+      "JUnit, Mockito, and MockMVC",
       "Jira"
     ]
   },
@@ -25,7 +33,11 @@
     "company": "Joy of Coding",
     "date": "May 2022 - September 2022",
     "location": "Madison, NJ",
-    "summary": "",
+    "summary": [
+      "Collaborated with other engineers in Agile/Scrum environment to deliver software solutions to the client",
+      "Developed user interfaces for web and mobile applications using Javascript, React, and React Native",
+      "Developed server-side web APIs using Python and Django"
+    ],
     "skills": [
       "Python",
       "Django",

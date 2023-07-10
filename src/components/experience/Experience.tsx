@@ -4,7 +4,7 @@ import "./experience.css";
 export const Experience = (experienceData: TExperience) => {
   return (
     <div className="experience-grid-cell">
-      <h3>{experienceData.position}</h3>
+      <h3 style={{ color: "#FFE000" }}>{experienceData.position}</h3>
       <div>
         {[
           experienceData.company,
@@ -12,14 +12,14 @@ export const Experience = (experienceData: TExperience) => {
           experienceData.date,
         ].join(" • ")}
       </div>
-      <p>{experienceData.summary}</p>
-      <h3>Skills Developed</h3>
-      {experienceData.skills.map((skill, idx) => (
-        <span key={idx}>
-          <span>{skill}</span>
-          {idx !== experienceData.skills.length - 1 && <span> • </span>}
-        </span>
-      ))}
+      <br></br>
+      <ul style={{ textAlign: "start", margin: "0 auto 0 auto" }}>
+        {experienceData.summary.map((line, idx) => (
+          <li key={idx}>{line}</li>
+        ))}
+      </ul>
+      <h3 style={{ color: "#FFE000" }}>Skills Developed</h3>
+      {experienceData.skills.join(" • ")}
     </div>
   );
 };

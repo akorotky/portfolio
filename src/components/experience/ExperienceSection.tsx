@@ -14,7 +14,7 @@ export const ExperienceSection = ({
       <h2
         style={{
           color: "rgb(0, 140, 233)",
-          backgroundColor: "black",
+          backgroundColor: "#000000da",
           width: "11%",
           margin: "0 auto 0.5em auto",
           borderRadius: "1em",
