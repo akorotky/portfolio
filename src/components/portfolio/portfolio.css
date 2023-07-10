@@ -2,12 +2,13 @@
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 15em;
-  grid-row-gap: 5em;
+  grid-row-gap: 80vh;
 }
 
 .portfolio-grid-cell {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 button {

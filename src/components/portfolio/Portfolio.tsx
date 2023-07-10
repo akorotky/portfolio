@@ -15,6 +15,11 @@ export const Portfolio = () => {
   return (
     <div>
       <ThreeJsCanvas />
+      <div style={{ position: "fixed", top: 0, right: 0, zIndex: 1 }}>
+        <button onClick={() => setShowPortfolio(!showPortfolio)}>
+          Toggle Playground
+        </button>
+      </div>
       <div
         style={{
           position: "absolute",
@@ -28,11 +33,6 @@ export const Portfolio = () => {
           <ExperienceSection experiencesData={experiencesData} />
           <ProjectSection projectsData={projectsData} />
         </div>
-      </div>
-      <div style={{ position: "fixed", top: 0, right: 0 }}>
-        <button onClick={() => setShowPortfolio(!showPortfolio)}>
-          Toggle Playground
-        </button>
       </div>
     </div>
   );
