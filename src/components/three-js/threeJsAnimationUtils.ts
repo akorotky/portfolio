@@ -156,16 +156,16 @@ export const changeCameraPerspactiveOnScroll = (
       html.offsetHeight
     ) - window.innerHeight;
 
-  let scrollTop = document.documentElement.scrollTop;
-  let scrollPercentage = scrollTop / maxScrollTop;
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollPercentage = scrollTop / maxScrollTop;
   const radius = 10; // distance from the sun
 
   // update camera coordinates
-  let newZ = radius * Math.cos((scrollPercentage * Math.PI) / 2);
-  let newY = (radius + 5) * Math.sin((scrollPercentage * Math.PI) / 2);
-
-  camera.rotation.x = Math.sin((scrollPercentage * Math.PI) / 2);
-  camera.position.set(camera.position.x, newY, newZ);
+  const newZ = radius * Math.cos((scrollPercentage * Math.PI) / 2);
+  const newY = (radius + 5) * Math.sin((scrollPercentage * Math.PI) / 2);
+  const newX = Math.sin((scrollPercentage * Math.PI) / 2);
+  
+  camera.position.set(newX, newY, newZ);
 
   // make camera look always at the sun
   camera.lookAt(new THREE.Vector3(0, 0, 0));
