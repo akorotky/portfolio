@@ -15,16 +15,20 @@ export const Portfolio = () => {
   return (
     <div>
       <ThreeJsCanvas />
-      {showPortfolio && (
-        <div style={{ position: "absolute", textAlign: "center" }}>
-          <div className="portfolio-grid">
-            <AboutSection {...aboutData} />
-            <SkillsSection {...skillsData} />
-            <ExperienceSection experiencesData={experiencesData} />
-            <ProjectSection projectsData={projectsData} />
-          </div>
+      <div
+        style={{
+          position: "absolute",
+          textAlign: "center",
+          zIndex: `${showPortfolio ? 0 : -1}`,
+        }}
+      >
+        <div className="portfolio-grid">
+          <AboutSection {...aboutData} />
+          <SkillsSection {...skillsData} />
+          <ExperienceSection experiencesData={experiencesData} />
+          <ProjectSection projectsData={projectsData} />
         </div>
-      )}
+      </div>
       <div style={{ position: "fixed", top: 0, right: 0 }}>
         <button onClick={() => setShowPortfolio(!showPortfolio)}>
           Toggle Playground
