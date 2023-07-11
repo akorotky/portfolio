@@ -14,7 +14,7 @@ export const ProjectSection = ({ projectsData }: ProjectSectionProps) => {
           color: "rgb(0, 140, 233)",
           backgroundColor: "#000000da",
           width: "9%",
-          margin: "0 auto 0.5em auto",
+          margin: "0 auto 0 auto",
           borderRadius: "1em",
           padding:"0.3em"
         }}

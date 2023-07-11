@@ -5,10 +5,16 @@ export const AboutSection = (aboutData: TAbout) => {
   return (
     <div className="about-container">
       <div className="about-content">
-        <h2 style={{ color: "#FFE000" }}>{aboutData.headline}</h2>
+        <h2 style={{ color: "#FFD100" }}>
+          {"Hello, I'm "}
+          <span style={{ color: "#1ae000" }}>Alex</span>
+          {". Welcome to my portfolio!"}
+        </h2>
         <p>{aboutData.summary.join(" ")}</p>
-        <p>
-          <strong style={{ color: "#FFE000" }}>Top interests: </strong>
+        <p style={{ color: "rgb(0, 140, 233)" }}>
+          <strong style={{ color: "orange", marginRight: "0.35em" }}>
+            Top interests:
+          </strong>
           {aboutData.interests.join(" • ")}
         </p>
       </div>

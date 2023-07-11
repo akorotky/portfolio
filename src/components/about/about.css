@@ -8,11 +8,11 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 140, 233);
+  background-color: #000000da;
   width: 40%;
   padding: 3em;
   border-radius: 1em;
-  animation: slide 2s ease-in 1s forwards;
+  animation: slide 2s ease-in forwards;
   transform: translateY(-100vh);
 }
 

@@ -10,21 +10,22 @@
       "Delivered 3,000 lines of high-quality Java code within the first month of the internship",
       "Reviewed, identified bugs in, and suggested improvements for Java, Javascript, and Typescript codebases",
       "Performed unit, integration, and end-to-end tests on microservices using JUnit, Mockito, and MockMVC",
-      "Used Jira to improve Software Development Life Cycle efficiency and team collaboration"
+      " Used Jira for bug reporting and improving team collaboration"
     ],
     "skills": [
       "Java 17",
       "Spring Boot",
       "Oracle DB",
-      "Microservices Design & Implementation",
-      "REST API Design & Implementation",
+      "Microservices and REST API Design & Implementation",
       "Spring MVC",
       "Spring Data JPA",
+      "Hibernate",
       "Spring Security",
       "Tomcat",
       "Maven",
-      "Hibernate",
-      "JUnit, Mockito, and MockMVC",
+      "JUnit",
+      "Mockito",
+      "MockMvc",
       "Jira"
     ]
   },

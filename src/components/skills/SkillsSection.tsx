@@ -36,7 +36,7 @@ export const SkillsSection = (skillsData: TSkills) => {
           const currentSkillSet = skills[category as keyof typeof skills];
           return (
             <div className="skills-content" key={categoryIdx}>
-              <strong style={{ color: "#FFF000" }}>{category}</strong>
+              <strong style={{ color: "#FFD100" }}>{category}</strong>
               <ul style={{ textAlign: "start" }}>
                 {currentSkillSet.map((skill, idx) => (
                   <li key={idx}>{skill}</li>
